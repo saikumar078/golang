@@ -6,46 +6,37 @@ import (
 	"unicode"
 )
 
-// countVowelsAndConsonants takes an input string and counts the number of vowels and consonants in it.
-func countVowelsAndConsonants(input string) (int, int) {
+func CountVowelsandConsonants(s string) {
 
-	// Define a string containing all vowels (both uppercase and lowercase).
-	vowels := "AEIOUaieou"
-
-	// Initialize counters for vowels and consonants, and strings to store the vowels and consonants found.
-	vowelsCount, consonantCount := 0, 0
-	v, c := "", ""
-
-	// Iterate over each character in the input string.
-	for _, char := range input {
-
-		// Check if the character is a letter (ignores non-letter characters like punctuation).
+	vowels := "AEIOUaeiou"
+	 vcount := 0
+	 c_count := 0 
+	 vowels_letter:=""
+	 consonants_letter:=""
+	 
+	 
+	for _, char := range s {
 		if unicode.IsLetter(char) {
 
-			// If the character is a vowel (found in the vowels string), increment the vowel count and add the character to the vowel string.
-			if strings.ContainsRune(vowels, char) {
-				v += string(rune(char))   // Append the vowel to the vowel string.
-				vowelsCount++             // Increment the vowel counter.
+			if strings.Contains(vowels, string(char)) {
+                 vowels_letter+=string(char)
+				 
+				vcount++
 			} else {
-				// If the character is not a vowel, it is considered a consonant.
-				c += string(rune(char))   // Append the consonant to the consonant string.
-				consonantCount++           // Increment the consonant counter.
+				c_count++
+				consonants_letter+=string(char)
+				 
 			}
 		}
 	}
+	fmt.Println("vowels_count:", vcount, "consonantcount:", c_count)
 
-	// Print the vowels and consonants found.
-	fmt.Println("Vowels    :", v)
-	fmt.Println("Consonant :", c)
+	fmt.Println("vowels_letter: ",vowels_letter)    
+	fmt.Println("consonants_letter: ",consonants_letter)    
 
-	// Return the total counts of vowels and consonants.
-	return vowelsCount, consonantCount
 }
 
 func main() {
-	// Call the function with the input string "ajhdsj:" and store the counts in variables.
-	vowelsCount, consonantCount := countVowelsAndConsonants("ajhdsj:")
 
-	// Print the result: number of vowels and consonants.
-	fmt.Println(vowelsCount, consonantCount)
+	CountVowelsandConsonants("helloWorld!!")
 }
