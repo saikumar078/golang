@@ -4,24 +4,23 @@ import (
 	"fmt"
 )
 
-func findDuplicateCharacters(s string) {
-	counts := make(map[rune]int)
+func main() {
+	// Input string
+	str := "Hello World!1"
 
-	// Count occurrences of each character
-	for _, char := range s {
-		counts[char]++
-	}
+	// Change case: Convert lowercase to uppercase and vice versa
+	var result string
+	for _, ch := range str {
+		if ch >= 'a' && ch <= 'z' {
 
-	// Print duplicates
-	fmt.Println("Duplicate characters:")
-	for char, count := range counts {
-		if count > 1 {
-			fmt.Printf("'%c' occurs %d times\n", char, count)
+			result += string(ch - 'a' + 'A')// 10+150
+
+		} else if ch >= 'A' && ch <= 'Z' {
+			result += string(ch - 'A' + 'a')
+		} else {
+			result += string(ch) // Non-alphabet characters remain the same
 		}
 	}
-}
 
-func main() {
-	input := "programming"
-	findDuplicateCharacters(input)
+	fmt.Println(result)
 }
