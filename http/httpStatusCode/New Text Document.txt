@@ -6,23 +6,110 @@
      has not been completed.
 204 -- No Content - The request has succeeded but returns no message body.
 
-
++
 304 -- Not Modified
 
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+400 :
+The 400 Bad Request status code means that the server could not understand the request because it was malformed or invalid.
 
-400 -- Bad Request - The request could not be understood by the server due to 
-      malformed syntax.
-401 -- Unauthorized - The request requires user authentication or, if the request
-      included authorization credentials, authorization has been
+Reasons for 400 Error:
+Incorrect Syntax
+The request is not formatted correctly, like missing required parameters or improper data types.
+
+Invalid Request Body
+The data sent in the request body (like JSON or form data) is not valid or is incomplete.
+
+Missing Parameters
+Required parameters or headers are missing from the request.
+
+Invalid URL
+The URL might be malformed or contain incorrect query parameters.
+	  
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+ 401--- Unauthorized error means the server blocked your request because it didn’t get the proper authentication credentials or the credentials were invalid.
+
+Why it Happens:
+No Authorization header in the request.
+Wrong username, password, or token.
+Expired token.
+The user or API key doesn’t have enough permissions.
+Server expects a different type of authentication (e.g., Bearer Token).
       refused for those credentials
-403 -- Forbidden - The server understood the request, but is refusing to fulfill it.
-404 -- Not Found - The requested resource could not be found. This error can be
-     due to a temporary or permanent condition.
+	  
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+The 403 Forbidden status code means the server has received and understood your request, but it is refusing to allow you access to the resource. Unlike 401 Unauthorized, this error is not related to authentication—it’s about permissions or access rights.
+
+Common Reasons for 403 Errors:
+Lack of Permissions
+You are authenticated but do not have the necessary permissions to access the resource.
+
+IP Address Blocked
+The server may have blocked your IP address due to security policies.
+
+Access Restricted by Server
+The server might have rules that block certain users, locations, or conditions.
+
+Resource Permissions Misconfigured
+The requested file or resource has restricted permissions set on the server (e.g., private directories or files).
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+The 404 Not Found status code indicates that the server cannot find the requested resource. This typically happens when the URL is incorrect or the resource no longer exists.
+
+Common Reasons for a 404 Error:
+Incorrect URL
+The URL might be misspelled or pointing to a non-existent endpoint.
+
+Deleted or Moved Resource
+The resource (e.g., a page, file, or API endpoint) has been deleted or moved without proper redirection.
+
+Wrong Path in API Request
+The API path or endpoint might not be valid or is incorrectly specified.
+
+Broken Links
+Hyperlinks on websites that lead to non-existent pages can return a 404 error.
+
+Outdated Bookmark or Cache
+You might be using an outdated link or cached page that no longer exists.
+	 
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
 405 -- Method Not Allowed - This code indicates that HTTP method used is not 
         supported for this resource.
-409 -- Conflict - This code indicates that there is a conflict request to create
-     the same resource twice.
-429 -- Too Many Requests - 
+		
+	Wrong Method
+You might be using a method that isn’t supported for that resource (e.g., trying to POST when only GET is allowed).
+
+However, the server is configured to handle PUT requests for this endpoint, not POST. As a result, the server will respond with a 405 Method Not Allowed error, because the POST method isn't allowed for that resource.
+
+In summary, a 405 Method Not Allowed occurs when you try to use the wrong HTTP method (e.g., POST instead of PUT or DELETE) for a resource that only accepts a specific method
+
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+The 409 Conflict status code means there is a conflict with the current state of the server, usually because you're trying to create or modify a resource that already exists, or the request conflicts with another action-
+
+Common Reasons for a 409 Error:
+Duplicate Resource Creation
+You may be trying to create a resource (e.g., a record, file, or entity) that already exists, like trying to create a user with the same username or email.
+
+Data Conflicts
+The request may conflict with another operation, such as trying to update a resource that has already been modified by someone else.
+
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+429:
+The 429 Too Many Requests status code means that you’ve made too many requests in a short amount of time, and the server is temporarily blocking further requests to avoid overload.
+
+Reasons for 429 Error:
+Too Many Requests
+You've sent more requests than allowed within a time period.
+
+Rate-Limiting
+The server limits the number of requests to prevent overloading.
+
+Flooding
+Too many requests from you or other users in a short time.
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 500 -- Internal Server Error - This code indicates that there is some error on 
         server side.
